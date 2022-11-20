@@ -54,11 +54,14 @@ subprojects {
         publishing {
             repositories {
                 maven {
+                    def propsFile = rootProject.file('github.properties')
+                    def props = new Properties()
+                    props.load(new FileInputStream(propsFile))
                     name = "GitHubPackages"
-                    url = uri("https://maven.pkg.github.com/droidsonroids/graphhopper-navigation-android")
+                    url = uri("https://maven.pkg.github.com/lamah-co/graphhopper-navigation-android")
                     credentials {
-                        username = System.getenv("GPR_USER")
-                        password = System.getenv("GPR_API_KEY")
+                        username props['username']
+                        password props['token']
                     }
                 }
             }
@@ -66,14 +69,6 @@ subprojects {
                 gpr(MavenPublication) {
                     from components.findByName("release")
                     artifact tasks.sourcesJar
-
-                    def getVersionName = { ->
-                        def currentBranch = System.getenv('BITRISE_GIT_BRANCH')
-                        def deployBranch = System.getenv('DEPLOY_BRANCH')
-                        def isSnapshot = currentBranch == null || currentBranch != deployBranch
-                        def artifactVersion = VERSION_NAME
-                        return isSnapshot ? "${artifactVersion}.SNAPSHOT.${getShortSha()}" : "${artifactVersion}"
-                    }
 
                     def getArtifactPath = { ->
                         def aarPath = "$buildDir/outputs/aar/${project.name}-release.aar"
