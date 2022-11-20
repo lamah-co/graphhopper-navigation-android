@@ -1,3 +1,26 @@
+# Lamah
+This Repository fork from DroidsOnRoids
+
+## To use or update this package
+- add github.properties file in root folder.
+- add username & token in file.
+  username=lamah
+  token=[generate_access_token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+## build new version from package
+in root project folder:
+- update version variable in build.gradle under publications.
+- run.
+    ```
+    ./gradlew publish
+    ```
+some times you face error with
+```
+Invalid publication 'gpr': artifact file does not exist : build/libs/navigation-android.jar'
+```
+you can fix it rename the navigation-android$version.jar to navigation-android.jar
+
+
 # Navigation SDK
 
 When your users want to get from one location to another, don’t push them out of your application into a generic map application.
