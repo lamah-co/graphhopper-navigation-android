@@ -1,16 +1,14 @@
-apply plugin: 'com.github.kt3k.coveralls'
-
 buildscript {
     apply from: "${rootDir}/gradle/dependencies.gradle"
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://plugins.gradle.org/m2' }
+        gradlePluginPortal()
     }
     dependencies {
         classpath pluginDependencies.gradle
-        classpath pluginDependencies.coveralls
         classpath pluginDependencies.errorprone
         classpath pluginDependencies.dependencyUpdates
     }
@@ -24,8 +22,9 @@ task testReport(type: TestReport, group: 'Build') {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://plugins.gradle.org/m2' }
+        gradlePluginPortal()
     }
 
     group = GROUP
@@ -44,10 +43,10 @@ subprojects {
     afterEvaluate { project ->
         task sourcesJar(type: Jar) {
             if (pluginManager.hasPlugin('com.android.library')) {
-                classifier 'sources'
+                archiveClassifier = 'sources'
                 from android.sourceSets.main.java.srcDirs
             } else {
-                classifier 'sources'
+                archiveClassifier = 'sources'
                 from sourceSets.main.allSource
             }
         }
