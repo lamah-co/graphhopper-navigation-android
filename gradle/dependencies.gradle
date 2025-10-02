@@ -9,7 +9,7 @@ ext {
   version = [
           mapboxMapSdk       : '11.7.1',
           mapboxSdkServices  : '5.8.0',
-          mapboxCore         : '3.1.0',
+          mapboxCore         : '4.0.0',
           autoValue          : '1.10.4',
           junit              : '4.13.2',
           mockito            : '5.6.0',
