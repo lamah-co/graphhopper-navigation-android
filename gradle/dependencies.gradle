@@ -7,8 +7,9 @@ ext {
   ]
 
   version = [
-          mapboxMapSdk       : '11.7.1',
-          mapboxCommon       : '24.7.1',
+          mapboxMapSdk       : '10.19.0',
+          mapboxSdkServices  : '5.8.0',
+          mapboxCore         : '3.1.0',
           autoValue          : '1.10.4',
           junit              : '4.13.2',
           mockito            : '5.6.0',
@@ -27,9 +28,11 @@ ext {
   ]
 
   dependenciesList = [
-          // mapbox - Using Maps SDK v11
-          mapboxMapSdk           : "com.mapbox.maps:android:${version.mapboxMapSdk}",
-          mapboxCommon           : "com.mapbox.common:common:${version.mapboxCommon}",
+          // mapbox - Using Maps SDK v10.19.0 with 16KB page size support
+          mapboxMapSdk           : "com.mapbox.maps:android-ndk27:${version.mapboxMapSdk}",
+          mapboxSdkServices      : "com.mapbox.mapboxsdk:mapbox-sdk-services:${version.mapboxSdkServices}",
+          mapboxSdkTurf          : "com.mapbox.mapboxsdk:mapbox-sdk-turf:${version.mapboxSdkServices}",
+          mapboxCore             : "com.mapbox.mapboxsdk:mapbox-android-core:${version.mapboxCore}",
 
           // AutoValue
           autoValue              : "com.google.auto.value:auto-value:${version.autoValue}",
