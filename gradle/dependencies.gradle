@@ -1,66 +1,64 @@
 ext {
 
   androidVersions = [
-      minSdkVersion    : 21,
-      targetSdkVersion : 29,
-      compileSdkVersion: 29,
+          minSdkVersion    : 21,
+          targetSdkVersion : 34,
+          compileSdkVersion: 34,
   ]
 
   version = [
-      mapboxMapSdk       : '9.2.1',
-      mapboxSdkServices  : '5.8.0',
-      mapboxCore         : '3.2.0',
-      autoValue          : '1.7.4',
-      junit              : '4.13.2',
-      mockito            : '3.8.0',
-      hamcrest           : '2.0.0.0',
-      errorprone         : '2.5.1',
-      timber             : '4.7.1',
-      commonsIO          : '2.8.0',
-      robolectric        : '4.5.1',
+          mapboxMapSdk       : '10.19.0',
+          mapboxSdkServices  : '5.8.0',
+          mapboxCore         : '3.1.0',
+          autoValue          : '1.10.4',
+          junit              : '4.13.2',
+          mockito            : '5.6.0',
+          hamcrest           : '2.2',
+          errorprone         : '2.23.0',
+          timber             : '5.0.1',
+          commonsIO          : '2.15.0',
+          robolectric        : '4.11.1',
   ]
 
   pluginVersion = [
-      checkstyle       : '8.2',
-      errorprone       : '1.3.0',
-      coveralls        : '2.8.1',
-      gradle           : '4.1.2',
-      dependencyUpdates: '0.36.0'
+          checkstyle       : '10.12.4',
+          errorprone       : '3.1.0',
+          gradle           : '8.1.4',
+          dependencyUpdates: '0.50.0'
   ]
 
   dependenciesList = [
-      // mapbox
-      mapboxMapSdk           : "com.mapbox.mapboxsdk:mapbox-android-sdk:${version.mapboxMapSdk}",
-      mapboxSdkServices      : "com.mapbox.mapboxsdk:mapbox-sdk-services:${version.mapboxSdkServices}",
-      mapboxSdkTurf          : "com.mapbox.mapboxsdk:mapbox-sdk-turf:${version.mapboxSdkServices}",
-      mapboxCore           : "com.mapbox.mapboxsdk:mapbox-android-core:${version.mapboxCore}",
+          // mapbox - Using Maps SDK v10.19.0 with 16KB page size support
+          mapboxMapSdk           : "com.mapbox.maps:android-ndk27:${version.mapboxMapSdk}",
+          mapboxSdkServices      : "com.mapbox.mapboxsdk:mapbox-sdk-services:${version.mapboxSdkServices}",
+          mapboxSdkTurf          : "com.mapbox.mapboxsdk:mapbox-sdk-turf:${version.mapboxSdkServices}",
+          mapboxCore             : "com.mapbox.mapboxsdk:mapbox-android-core:${version.mapboxCore}",
 
-      // AutoValue
-      autoValue              : "com.google.auto.value:auto-value:${version.autoValue}",
-      autoValueAnnotations   : "com.google.auto.value:auto-value-annotations:${version.autoValue}",
+          // AutoValue
+          autoValue              : "com.google.auto.value:auto-value:${version.autoValue}",
+          autoValueAnnotations   : "com.google.auto.value:auto-value-annotations:${version.autoValue}",
 
-      // support
-      appcompat              : "androidx.appcompat:appcompat:1.2.0",
+          // support
+          appcompat              : "androidx.appcompat:appcompat:1.6.1",
 
-      // square crew
-      timber                 : "com.jakewharton.timber:timber:${version.timber}",
+          // square crew
+          timber                 : "com.jakewharton.timber:timber:${version.timber}",
 
-      // unit test
-      junit                  : "junit:junit:${version.junit}",
-      mockito                : "org.mockito:mockito-core:${version.mockito}",
-      hamcrest               : "org.hamcrest:hamcrest-junit:${version.hamcrest}",
-      commonsIO              : "commons-io:commons-io:${version.commonsIO}",
-      robolectric            : "org.robolectric:robolectric:${version.robolectric}",
+          // unit test
+          junit                  : "junit:junit:${version.junit}",
+          mockito                : "org.mockito:mockito-core:${version.mockito}",
+          hamcrest               : "org.hamcrest:hamcrest:${version.hamcrest}",
+          commonsIO              : "commons-io:commons-io:${version.commonsIO}",
+          robolectric            : "org.robolectric:robolectric:${version.robolectric}",
 
-      errorprone             : "com.google.errorprone:error_prone_core:${version.errorprone}",
-      errorproneJavac        : "com.google.errorprone:javac:9+181-r4173-1"
+          errorprone             : "com.google.errorprone:error_prone_core:${version.errorprone}",
+          errorproneJavac        : "com.google.errorprone:javac:9+181-r4173-1"
   ]
 
   pluginDependencies = [
-      gradle           : "com.android.tools.build:gradle:${pluginVersion.gradle}",
-      checkstyle       : "com.puppycrawl.tools:checkstyle:${pluginVersion.checkstyle}",
-      coveralls        : "org.kt3k.gradle.plugin:coveralls-gradle-plugin:${pluginVersion.coveralls}",
-      errorprone       : "net.ltgt.gradle:gradle-errorprone-plugin:${pluginVersion.errorprone}",
-      dependencyUpdates: "com.github.ben-manes:gradle-versions-plugin:${pluginVersion.dependencyUpdates}"
+          gradle           : "com.android.tools.build:gradle:${pluginVersion.gradle}",
+          checkstyle       : "com.puppycrawl.tools:checkstyle:${pluginVersion.checkstyle}",
+          errorprone       : "net.ltgt.gradle:gradle-errorprone-plugin:${pluginVersion.errorprone}",
+          dependencyUpdates: "com.github.ben-manes:gradle-versions-plugin:${pluginVersion.dependencyUpdates}"
   ]
 }

@@ -1,24 +1,46 @@
-# Lamah
-This Repository fork from DroidsOnRoids
+# Lamah GraphHopper Navigation Android
+
+This repository is forked from DroidsOnRoids and updated for Android 16KB page size compatibility.
+
+**Current Version:** `0.4.0`
+
+## Version 0.4.0 Updates
+- ✅ Android 16KB page size compatible (Google Play requirement)
+- ✅ Updated to SDK 34 (Android 14)
+- ✅ Upgraded Mapbox SDK to 11.7.1
+- ✅ Java 17 support
+- ✅ Modern Gradle 8.4 & AGP 8.1.4
 
 ## To use or update this package
-- add github.properties file in root folder.
-- add username & token in file.
+- Add `github.properties` file in root folder
+- Add username & token:
+  ```
   username=lamah
-  token=[generate_access_token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+  token=[your_github_token]
+  ```
+  [Generate token here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-## build new version from package
-in root project folder:
-- update version variable in build.gradle under publications.
-- run.
-    ```
-    ./gradlew publish
-    ```
-some times you face error with
+## Build and Test
+```bash
+# Clean build
+./gradlew clean
+
+# Run tests
+./gradlew :navigation-android:test
+
+# Build release AAR
+./gradlew :navigation-android:assembleRelease
+
+# Output location:
+# navigation-android/build/outputs/aar/navigation-android-release.aar
 ```
-Invalid publication 'gpr': artifact file does not exist : build/libs/navigation-android.jar'
-```
-you can fix it rename the navigation-android$version.jar to navigation-android.jar
+
+## Publish new version
+1. Update version in `build.gradle` under publications (line 81)
+2. Build and test (see commands above)
+3. Publish: `./gradlew publish`
+
+**Troubleshooting:** If you get `artifact file does not exist` error, rename `navigation-android$version.jar` to `navigation-android.jar`
 
 
 # Navigation SDK
@@ -41,8 +63,49 @@ It is 100% open source and was forked 2018 from Mapbox due to [licensing issues]
 If you are looking to include this inside your project, please also have a look into the
 [Android example](https://github.com/graphhopper/graphhopper-navigation-example).
 
-Add this snippet to your `build.gradle` file to use this SDK (`libandroid-navigation`):
+Add this snippet to your `build.gradle` file to use this SDK:
 
+```gradle
+implementation 'com.lamah.graphhopper:navigation-android:0.4.0'
 ```
-implementation 'com.graphhopper.navigation:navigation-android:0.1.0'
+
+**Requirements:**
+- minSdkVersion: 21+
+- compileSdkVersion: 34+
+- Java 17+
+
+## 16KB Page Size Compatibility
+
+This library is **16KB compatible** (no native libraries).
+
+### Verify the Library
+```bash
+# 1. Build the library
+./gradlew :navigation-android:assembleRelease
+
+# 2. Check the AAR for native libraries (.so files)
+# Run this from project root:
+unzip -l ./navigation-android/build/outputs/aar/navigation-android-release.aar | grep "jni/"
+
+# Empty result = No native libraries = 16KB compatible ✅
 ```
+
+**What is AAR?** Android Archive file - like a ZIP containing compiled code, resources, and native libraries (if any).
+
+### Verify in Your App
+**Easiest Method (Recommended):**
+1. Integrate this library in your app
+2. Build your app: `./gradlew assembleRelease` or `./gradlew bundleRelease`
+3. Upload APK/AAB to Play Console Internal Testing track
+4. Google automatically validates 16KB compatibility ✅
+
+**Manual Check:**
+```bash
+# In your app project
+./gradlew assembleRelease
+
+# Check all native libraries in your APK
+unzip -l app/build/outputs/apk/release/app-release.apk | grep "\.so$"
+```
+
+All native libraries from dependencies must be 16KB aligned. This library has none, so it's compliant.
